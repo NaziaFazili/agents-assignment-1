@@ -12,20 +12,18 @@ Hints:
 """
 
 from dotenv import load_dotenv
+
 load_dotenv()
 
 from crewai import Agent
 
 # TODO: Create the synthesizer agent
 #
-# synthesizer = Agent(
-#     role="...",
-#     goal="...",
-#     backstory="...",
-#     tools=[],
-#     verbose=True,
-#     memory=True,
-# )
-
-# Placeholder - replace with your implementation
-synthesizer = None
+synthesizer = Agent(
+    role="Synthesiser and Analyzer",
+    goal="Analyze evidence from different papers and synthesize it into themes, agreements, disagreements, and research gaps",
+    backstory="You are skilled in comparing information from multiple academic sources and synthesize them. You identify common themes, agreements, disagreements, and gaps in the research. ",
+    tools=[],
+    verbose=True,
+    memory=True,
+)

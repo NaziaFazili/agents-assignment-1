@@ -13,20 +13,19 @@ Hints:
 """
 
 from dotenv import load_dotenv
+
 load_dotenv()
 
 from crewai import Agent
 
-# TODO: Create the query_expander agent
-#
-# query_expander = Agent(
-#     role="...",
-#     goal="...",
-#     backstory="...",
-#     tools=[],
-#     verbose=True,
-#     memory=True,
-# )
-
-# Placeholder - replace with your implementation
-query_expander = None
+query_expander = Agent(
+    role="Query Expander",
+    goal="Take the original research question and break it into focused sub-questions and useful keywords",
+    backstory=(
+        "You are an expert research assistant who specializes in breaking research questions "
+        "into clear shorter sub-questions and keywords."
+    ),
+    tools=[],
+    verbose=True,
+    memory=True,
+)

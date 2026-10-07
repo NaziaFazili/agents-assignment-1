@@ -19,20 +19,20 @@ Hints:
 """
 
 from dotenv import load_dotenv
+
 load_dotenv()
 
 from crewai import Agent
 
-# TODO: Create the report_writer agent
-#
-# report_writer = Agent(
-#     role="...",
-#     goal="...",
-#     backstory="...",
-#     tools=[],
-#     verbose=True,
-#     memory=True,
-# )
-
-# Placeholder - replace with your implementation
-report_writer = None
+report_writer = Agent(
+    role="Report writer",
+    goal="Write a clear and well organized in a predefined format, using the synthesized research findings and attributing them to correct source",
+    backstory=(
+        "You are an experienced writer skilled at turning research findings "
+        "into clear, well organized literature reviews. All claims are "
+        "supported by the appropriate sources and citations."
+    ),
+    tools=[],
+    verbose=True,
+    memory=True,
+)

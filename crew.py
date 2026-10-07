@@ -12,10 +12,11 @@ This module should:
 
 # Load environment variables BEFORE importing crewai
 from dotenv import load_dotenv
+
 load_dotenv()
 
+from agents import query_expander, report_writer, source_hunter, synthesizer
 from crewai import Crew, Process
-from agents import query_expander, source_hunter, synthesizer, report_writer
 from tasks.task_definitions import create_research_tasks
 
 
@@ -33,22 +34,20 @@ def create_research_crew(research_question: str) -> Crew:
     """
 
     # TODO: Create tasks for the research question
-    # tasks = create_research_tasks(research_question)
+    tasks = create_research_tasks(research_question)
 
     # TODO: Create and configure the Crew
-    # crew = Crew(
-    #     agents=[query_expander, source_hunter, synthesizer, report_writer],
-    #     tasks=tasks,
-    #     process=Process.sequential,
-    #     verbose=True,
-    #     memory=True,
-    # )
-    # return crew
+    crew = Crew(
+        agents=[query_expander, source_hunter, synthesizer, report_writer],
+        tasks=tasks,
+        process=Process.sequential,
+        verbose=True,
+        memory=True,
+    )
+    return crew
 
     # Placeholder - replace with your implementation
-    raise NotImplementedError(
-        "TODO: Implement create_research_crew() in crew.py"
-    )
+    raise NotImplementedError("TODO: Implement create_research_crew() in crew.py")
 
 
 def run_research(research_question: str) -> str:
@@ -64,19 +63,19 @@ def run_research(research_question: str) -> str:
     TODO: Implement this function
     """
     # TODO: Create the crew and run it
-    # crew = create_research_crew(research_question)
-    # result = crew.kickoff()
-    # return str(result)
+    crew = create_research_crew(research_question)
+    result = crew.kickoff()
+    return str(result)
 
     # Placeholder - replace with your implementation
-    raise NotImplementedError(
-        "TODO: Implement run_research() in crew.py"
-    )
+    raise NotImplementedError("TODO: Implement run_research() in crew.py")
 
 
 # Allow running crew.py directly for testing
 if __name__ == "__main__":
-    test_question = "What are the main approaches to building AI agents that can reason and act?"
+    test_question = (
+        "What are the main approaches to building AI agents that can reason and act?"
+    )
     print(f"Testing crew with question: {test_question}\n")
     result = run_research(test_question)
     print("\n" + "=" * 50)
